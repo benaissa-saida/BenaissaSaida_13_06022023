@@ -1,0 +1,105 @@
+.sign-in-button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+}
+
+.sign-in-content {
+  box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  height: 27rem;
+  padding: 2rem;
+  height: 100%;
+}
+
+.sign-in-icon {
+  font-size: 5rem;
+}
+
+.input-remember {
+  display: flex;
+}
+
+.input-remember label {
+  margin-left: 0.25rem;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.input-wrapper label {
+  font-weight: bold;
+}
+
+.input-wrapper input {
+  padding: 5px;
+  font-size: 1.2rem;
+}
+
+input.show-error {
+  border: 1.5px solid firebrick;
+}
+
+.errmsg {
+  padding: 0;
+  margin: 0;
+  color: firebrick;
+}
+
+.loading {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loading-msg {
+  color: #fff;
+}
+
+.progress-bar {
+  position: relative;
+  height: 10px;
+  width: 200px;
+  background: var(--grey);
+  border-radius: 25px;
+}
+
+.progress-fill {
+  position: absolute;
+  height: 10px;
+  width: 0%;
+  animation: progress-forward 3s infinite;
+  background: white;
+  border-radius: 15px;
+}
+
+@keyframes progress-forward {
+  0% {
+    width: 0%;
+  }
+  25% {
+    width: 50%;
+  }
+  50% {
+    width: 75%;
+  }
+  75% {
+    width: 85%;
+  }
+  100% {
+    width: 100%;
+  }
+} ;
