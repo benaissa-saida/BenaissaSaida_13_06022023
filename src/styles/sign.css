@@ -47,6 +47,13 @@
   font-size: 1.2rem;
 }
 
+.input-info-wrapper {
+  display: flex;
+}
+.input-info-wrapper span {
+  margin-left: 0.5rem;
+}
+
 input.show-error {
   border: 1.5px solid firebrick;
 }
