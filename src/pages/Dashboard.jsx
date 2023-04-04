@@ -43,11 +43,11 @@ function Dashboard() {
       </div>
       <h2 className="sr-only">Accounts</h2>
 
-      {AccountData.map(({ title, amount, description }, index) => (
+      {AccountData.map(({ name, balance, description }, index) => (
         <AccountCard
           key={`account-${index}`}
-          title={title}
-          amount={amount}
+          name={name}
+          balance={balance}
           description={description}
         />
       ))}
