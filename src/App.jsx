@@ -5,6 +5,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         {/* public routes */}
         <Route index element={<Home />} />
         <Route path="login" element={<SignIn />} />
+        <Route path="signup" element={<SignUp />} />
 
         {/* protected routes */}
         <Route element={<RequireAuth />}>
