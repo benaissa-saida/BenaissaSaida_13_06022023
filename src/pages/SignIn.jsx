@@ -1,10 +1,10 @@
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { Tooltip } from "react-tooltip";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../features/auth/authSlice";
 import { useLoginMutation } from "../features/auth/authApiSlice";
-import "../styles/signIn.css";
+import "../styles/sign.css";
 
 function SignIn() {
   const userRef = useRef();
@@ -13,6 +13,7 @@ function SignIn() {
   const [password, setPassword] = useState("");
   const [errMail, setErrMail] = useState(false);
   const [errPsw, setErrPsw] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const navigate = useNavigate();
 
@@ -26,12 +27,27 @@ function SignIn() {
   useEffect(() => {
     setErrMsg("");
   }, [email, password]);
+
+  useEffect(() => {
+    if (localStorage.checked && localStorage.email !== "") {
+      setEmail(localStorage.email);
+      setPassword(localStorage.password);
+      setIsChecked(true);
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const userData = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...userData, email }));
+
+      if (isChecked && email !== "" && userData.status === 200) {
+        localStorage.email = email;
+        localStorage.password = password;
+        localStorage.checked = isChecked;
+      }
       setEmail("");
       setPassword("");
       navigate("/profile");
@@ -57,6 +73,7 @@ function SignIn() {
   const handleUserInput = (e) => setEmail(e.target.value);
 
   const handlePwdInput = (e) => setPassword(e.target.value);
+  const handleCheckedInput = (e) => setIsChecked(e.target.checked);
   return (
     <main className="main bg-dark">
       {isLoading ? (
@@ -68,11 +85,22 @@ function SignIn() {
         </section>
       ) : (
         <section className="sign-in-content">
-          <i className="fa fa-user-circle sign-in-icon"></i>
-          <h1>Sign In</h1>
+          <div>
+            <i className="fa fa-user-circle sign-in-icon"></i>
+            <h1>Sign In</h1>
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="input-wrapper">
-              <label htmlFor="username">Username *</label>
+              <div className="input-info-wrapper">
+                <label htmlFor="username">Username * </label>
+                <span
+                  data-tooltip-id="username"
+                  data-tooltip-content="Enter your email here"
+                >
+                  <i className="fa-solid fa-circle-info"></i>
+                  <Tooltip id="username" />
+                </span>
+              </div>
               <input
                 className={errMail ? "show-error" : ""}
                 type="text"
@@ -96,7 +124,12 @@ function SignIn() {
               />
             </div>
             <div className="input-remember">
-              <input type="checkbox" id="remember-me" />
+              <input
+                type="checkbox"
+                id="remember-me"
+                checked={isChecked}
+                onChange={handleCheckedInput}
+              />
               <label htmlFor="remember-me">Remember me</label>
             </div>
             <p
