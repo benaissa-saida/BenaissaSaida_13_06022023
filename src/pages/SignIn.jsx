@@ -4,6 +4,8 @@ import { Tooltip } from "react-tooltip";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../features/auth/authSlice";
 import { useLoginMutation } from "../features/auth/authApiSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import "../styles/sign.css";
 
 function SignIn() {
@@ -86,7 +88,7 @@ function SignIn() {
       ) : (
         <section className="sign-in-content">
           <div>
-            <i className="fa fa-user-circle sign-in-icon"></i>
+            <FontAwesomeIcon icon={faCircleUser} size="5x" />
             <h1>Sign In</h1>
           </div>
           <form onSubmit={handleSubmit}>

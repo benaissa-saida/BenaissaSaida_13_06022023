@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../features/auth/authSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import {
   useLoginMutation,
   useSigupMutation,
@@ -34,6 +36,7 @@ function SignUp() {
     e.preventDefault();
 
     try {
+      debugger;
       const signupData = await signup({
         email,
         password,
@@ -79,8 +82,9 @@ function SignUp() {
         </section>
       ) : (
         <section className="sign-in-content">
-          <i className="fa fa-user-circle sign-in-icon"></i>
+          <FontAwesomeIcon icon={faCircleUser} size="5x" />
           <h1>Sign Up</h1>
+
           <form onSubmit={handleSubmit}>
             <div className="input-wrapper">
               <label htmlFor="firstName">FirstName *</label>
