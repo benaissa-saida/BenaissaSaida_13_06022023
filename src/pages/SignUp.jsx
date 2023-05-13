@@ -36,7 +36,6 @@ function SignUp() {
     e.preventDefault();
 
     try {
-      debugger;
       const signupData = await signup({
         email,
         password,
